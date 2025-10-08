@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('stock_transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
+            $table->foreignId('product_id')->constrained('products');
+            $table->enum('type', ['in','out','return']);
+            $table->decimal('quantity',15,3);
+            $table->string('reference_type'); //order, manual, return
+            $table->unsignedBigInteger('reference_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
-
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('stock_transactions');
     }
 };

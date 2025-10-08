@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('companies', function (Blueprint $table) {
+        Schema::table('teams', function (Blueprint $table) {
             $table->dropColumn([
                 'slug',
                 'subscription_plan',
