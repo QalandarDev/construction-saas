@@ -12,6 +12,7 @@ class Warehouse extends BaseModel
         'name',
         'location',
         'manager_id',
+
     ];
     public function company(): BelongsTo
     {
